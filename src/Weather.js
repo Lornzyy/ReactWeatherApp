@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./weather.css";
 import axios from "axios";
 
-import FormattedDate from "./formattedDate";
+import FormatDate from "./FormatDate";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -74,12 +74,15 @@ export default function Weather(props) {
             </p>
           </div>
           <div className="col-6">
-            <h2> 22.48 PM</h2>
+            <h2>
+              <FormatDate time={weatherData.time}/>
+              </h2>
             <p>few clouds</p>
           </div>
         </div>
       </div>
-      <FormattedDate date={weatherData.time} />
+      {/* <FormattedDate formatDate={weatherData.time} /> */}
+
       <div className="weather-information">
         <div>
           <p>💧 Humidity 68%</p>
