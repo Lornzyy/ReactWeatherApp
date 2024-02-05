@@ -7,10 +7,11 @@ import FormatDate from "./FormatDate";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
   function displayWeatherData(res) {
     setWeatherData({
+      ready: true,
       city: res.data.city,
       country: res.data.country,
       description: res.data.condition.description,
@@ -19,9 +20,11 @@ export default function Weather(props) {
       temperature: res.data.temperature.current,
       humidity: res.data.temperature.humidity,
       wind: res.data.wind.speed,
-      time: res.data.time
+      date: new Date(res.data.time * 1000),
     });
   }
+
+  console.log(weatherData.city);
 
   function search() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";
@@ -42,54 +45,55 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  return (
-    <div className="container weather">
-      <form className="border rounded" onSubmit={handleSubmit}>
-        <input
-          type="search"
-          placeholder="Enter the city..."
-          className="rounded w-60"
-          onChange={handleChange}
-        />
-        <input
-          type="button"
-          value="Search"
-          className="btn btn-search"
-          onClick={handleSubmit}
-        />
-      </form>
-      <hr />
-      <div class="weather-information">
-        <h1>{weatherData.country}</h1>
-        <div className="row">
-          <div className="col-6">
-            <h4>
-              <span>📍</span>
-              { weatherData.city
-              }
-            </h4>
-            <p>
-              <span>clouds</span>
-              19°C
-            </p>
+  if (weatherData.ready) {
+    return (
+      <div className="container weather">
+        <form className="border rounded" onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter the city..."
+            className="rounded w-60"
+            onChange={handleChange}
+          />
+          <input
+            type="button"
+            value="Search"
+            className="btn btn-search"
+            onClick={handleSubmit}
+          />
+        </form>
+        <hr />
+        <div className="weather-information">
+          <h1>{weatherData.country}</h1>
+          <div className="row">
+            <div className="col-6">
+              <h6>
+                <span>📍</span>
+                {weatherData.city}
+              </h6>
+              <p>
+                <span>clouds</span> {Math.round(weatherData.temperature)}°C
+              </p>
+            </div>
+            <div className="col-6">
+              <FormatDate date={weatherData.date} />
+              <p>{weatherData.description}</p>
+            </div>
           </div>
-          <div className="col-6">
-            <h2>
-              <FormatDate time={weatherData.time}/>
-              </h2>
-            <p>few clouds</p>
+        </div>
+        {/* <FormattedDate formatDate={weatherData.date} /> */}
+
+        <div className="weather-information">
+          <div>
+            <p>💧 Humidity {weatherData.humidity}%</p>
+
+            <p>💨 Wind {weatherData.wind} km/h</p>
           </div>
         </div>
       </div>
-      {/* <FormattedDate formatDate={weatherData.time} /> */}
-
-      <div className="weather-information">
-        <div>
-          <p>💧 Humidity 68%</p>
-
-          <p>💨 Wind 4.12 km/h</p>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    search();
+    <p>Loading .......</p>;
+  }
 }
