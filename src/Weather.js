@@ -7,6 +7,21 @@ import FormattedDate from "./formattedDate";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
+  const [weatherData, setWeatherData] = useState({});
+
+  function displayWeatherData(res) {
+    setWeatherData({
+      city: res.data.city,
+      country: res.data.country,
+      description: res.data.condition.description,
+      icon_url: res.data.condition.icon_url,
+      icon: res.data.condition.icon,
+      temperature: res.data.temperature.current,
+      humidity: res.data.temperature.humidity,
+      wind: res.data.wind.speed,
+      time: res.data.time
+    });
+  }
 
   function search() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";
@@ -14,9 +29,8 @@ export default function Weather(props) {
 
     // https://api.shecodes.io/weather/v1/current?query=Nairobi&key=o63c6afa36060dtb755bc2adb841329a&units=metric`
     // https://shecodes-assets.s3.amazonaws.com/api/weather
-    axios.get(apiUrl).then(handleSubmit);
+    axios.get(apiUrl).then(displayWeatherData);
   }
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -46,12 +60,13 @@ export default function Weather(props) {
       </form>
       <hr />
       <div class="weather-information">
-        <h1>Kenya</h1>
+        <h1>{weatherData.country}</h1>
         <div className="row">
           <div className="col-6">
             <h4>
               <span>📍</span>
-              {city}
+              { weatherData.city
+              }
             </h4>
             <p>
               <span>clouds</span>
@@ -64,7 +79,7 @@ export default function Weather(props) {
           </div>
         </div>
       </div>
-      <FormattedDate date="5th February, 2024" />
+      <FormattedDate date={weatherData.time} />
       <div className="weather-information">
         <div>
           <p>💧 Humidity 68%</p>
