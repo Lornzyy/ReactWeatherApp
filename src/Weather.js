@@ -3,13 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./weather.css";
 import axios from "axios";
 
-import FormatDate from "./FormatDate";
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function displayWeatherData(res) {
+      console.log(res.data);
+
     setWeatherData({
       ready: true,
       city: res.data.city,
@@ -21,10 +23,10 @@ export default function Weather(props) {
       humidity: res.data.temperature.humidity,
       wind: res.data.wind.speed,
       date: new Date(res.data.time * 1000),
+      message: res.messsage
     });
   }
 
-  console.log(weatherData.city);
 
   function search() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";
@@ -63,33 +65,9 @@ export default function Weather(props) {
           />
         </form>
         <hr />
-        <div className="weather-information">
-          <h1>{weatherData.country}</h1>
-          <div className="row">
-            <div className="col-6">
-              <h6>
-                <span>📍</span>
-                {weatherData.city}
-              </h6>
-              <p>
-                <span>clouds</span> {Math.round(weatherData.temperature)}°C
-              </p>
-            </div>
-            <div className="col-6">
-              <FormatDate date={weatherData.date} />
-              <p>{weatherData.description}</p>
-            </div>
-          </div>
-        </div>
+
+        <WeatherInfo data={weatherData} />
         {/* <FormattedDate formatDate={weatherData.date} /> */}
-
-        <div className="weather-information">
-          <div>
-            <p>💧 Humidity {weatherData.humidity}%</p>
-
-            <p>💨 Wind {weatherData.wind} km/h</p>
-          </div>
-        </div>
       </div>
     );
   } else {
