@@ -3,7 +3,7 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-  .container {
+  .app {
     width: 90vw;
     display: block;
     margin: 10px auto;

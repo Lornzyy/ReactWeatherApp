@@ -36,4 +36,11 @@ h6 {
   width: 40px;
 }
 
+a {
+  color: #5d25d5;
+  text-align: center;
+}
 
+a:hover {
+  color: rgb(188, 116, 116);
+}
