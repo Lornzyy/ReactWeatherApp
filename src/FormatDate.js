@@ -21,13 +21,12 @@ export default function FormatDate(props) {
 
   return (
     <>
-      <p>
+      <p className="m-0 p-0">
         <strong>
           {" "}
           {formattedDate}
           {hours < 12 ? "AM" : "PM"}
         </strong>
-        
       </p>
     </>
   );

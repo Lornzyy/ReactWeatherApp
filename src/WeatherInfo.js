@@ -11,17 +11,23 @@ export default function WeatherInfo(props) {
         <div className="additional-weather-information">
           <div className="float-left">
             <strong>
-              
               <h6>
                 <span>📍</span>
-                {
-                !props.message ? props.data.city : "City Not found"}
+                {!props.data.message ? props.data.city : "City Not found"}
               </h6>
             </strong>
-            <p>{Math.round(props.data.temperature)}°C</p>
-          </div>
-          <div className="float-right">
+
             <FormatDate date={props.data.date} />
+          </div>
+          <div className="float-left">
+            <div>
+              <img
+                src={props.data.icon_url}
+                alt={props.icon}
+                className="weather-icon"
+              />
+              <p>{Math.round(props.data.temperature)}°C</p>
+            </div>
             <p>{props.data.description}</p>
           </div>
         </div>

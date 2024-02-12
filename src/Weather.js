@@ -10,7 +10,7 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function displayWeatherData(res) {
-      console.log(res.data);
+    console.log(res.data);
 
     setWeatherData({
       ready: true,
@@ -23,10 +23,9 @@ export default function Weather(props) {
       humidity: res.data.temperature.humidity,
       wind: res.data.wind.speed,
       date: new Date(res.data.time * 1000),
-      message: res.messsage
+      message: res.messsage,
     });
   }
-
 
   function search() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";

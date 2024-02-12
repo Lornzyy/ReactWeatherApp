@@ -4,6 +4,12 @@ body {
   box-sizing: border-box;
 }
 
+p,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
 .weather-information {
   background: #9b89c3;
   border-radius: 20px;
@@ -12,8 +18,22 @@ body {
   padding: 7px;
 }
 
-.additional-weather-information {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.additional-weather-information div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
+
+.float-left div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon {
+  height: 35px;
+  width: 40px;
+}
+
+
