@@ -19,7 +19,7 @@ export default function WeatherIcon(props) {
     "mist-day": "FOG",
     "mist-night": "FOG",
     "thunderstorm-day": "RAIN",
-    "hunderstorm-night": "RAIN"
+    "thunderstorm-night": "RAIN"
     
   };
   const defaults = {
