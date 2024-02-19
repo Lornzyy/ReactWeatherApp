@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import WeatherForecastDaily from "./WeatherForecastDaily";
@@ -13,6 +13,11 @@ export default function WeatherForecast(props) {
     setLoaded(true);
     setForecast(response.data.daily);
   }
+
+  useEffect(() => {
+    setLoaded(false)
+  }, [props.forecast])
+
 
   function isLoaded() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";
