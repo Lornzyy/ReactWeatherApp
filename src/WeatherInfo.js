@@ -6,7 +6,6 @@ import Temperature from "./Temperature";
 import "./WeatherInfo.css";
 
 export default function WeatherInfo(props) {
-  
   return (
     <>
       <div className="weather-information">
@@ -24,8 +23,8 @@ export default function WeatherInfo(props) {
           </div>
           <div className="float-left">
             <div>
-              <WeatherIcon icon={props.data.icon}/>
-              <Temperature temp={props}/>
+              <WeatherIcon icon={props.data.icon} size={40} />
+              <Temperature temp={props} />
             </div>
             <p>{props.data.description}</p>
           </div>

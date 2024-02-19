@@ -19,20 +19,18 @@ export default function WeatherIcon(props) {
     "mist-day": "FOG",
     "mist-night": "FOG",
     "thunderstorm-day": "RAIN",
-    "thunderstorm-night": "RAIN"
-    
+    "thunderstorm-night": "RAIN",
   };
   const defaults = {
     icon: "CLEAR_DAY",
     color: "goldenrod",
-    size: 20,
     animate: true,
   };
   return (
     <ReactAnimatedWeather
       icon={iconMapping[props.icon]}
       color={defaults.color}
-      size={defaults.size}
+      size={props.size}
     />
   );
 }

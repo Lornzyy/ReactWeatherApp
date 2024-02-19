@@ -20,13 +20,11 @@ p {
 h6 {
   color: #411e8d;
   font-size: 13px;
+  margin: 2px;
+  padding: 2px;
 }
 
 .weather-forecast-temperature-min {
   opacity: 0.7;
 }
 
-.weather-forecast-icon {
-  width: 40px;
-  height: 40px;
-}

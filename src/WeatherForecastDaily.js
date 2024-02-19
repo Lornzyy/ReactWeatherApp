@@ -20,7 +20,7 @@ export default function WeatherForecastDaily(props) {
       <em>
         <h6>{day()}</h6>
       </em>
-      <WeatherIcon icon={props.data.condition.icon} />
+      <WeatherIcon  icon={props.data.condition.icon} size={32}/>
 
       <p>
         <span className="weather-forecast-temperature-max">
