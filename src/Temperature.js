@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./WeatherInfo.css";
 
 export default function Temperature(props) {
-  console.log(props.temp.data.temperature);
   const [unit, setUnit] = useState("celcius");
 
   function displayCelcius(e) {

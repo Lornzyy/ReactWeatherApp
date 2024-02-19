@@ -11,11 +11,10 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function displayWeatherData(res) {
-    console.log(res.data);
-
     setWeatherData({
       ready: true,
       city: res.data.city,
+      coordinates: res.data.coordinates,
       country: res.data.country,
       description: res.data.condition.description,
       icon_url: res.data.condition.icon_url,
@@ -69,7 +68,7 @@ export default function Weather(props) {
         <WeatherInfo data={weatherData} />
         {/* <FormattedDate formatDate={weatherData.date} /> */}
 
-        <WeatherForecast />
+        <WeatherForecast forecast={weatherData.coordinates} />
       </div>
     );
   } else {
