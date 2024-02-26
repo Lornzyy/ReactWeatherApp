@@ -16,13 +16,13 @@ export default function WeatherForecast(props) {
 
   useEffect(() => {
     setLoaded(false)
-  }, [props.forecast])
+  }, [props.forecast.coordinates])
 
 
   function isLoaded() {
     let apiKey = "o63c6afa36060dtb755bc2adb841329a";
-    let longitude = props.forecast.longitude;
-    let latitude = props.forecast.latitude;
+    let longitude = props.forecast.coordinates.longitude;
+    let latitude = props.forecast.coordinates.latitude;
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}`;
 
     // https://api.shecodes.io/weather/v1/forecast?lon=10&lat=10&key=o63c6afa36060dtb755bc2adb841329a
