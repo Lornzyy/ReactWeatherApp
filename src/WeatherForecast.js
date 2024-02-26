@@ -33,7 +33,7 @@ export default function WeatherForecast(props) {
     return (
       <div className="weather-forecast">
         <div className="container weather-forecast-container">
-          <h5> Nairobi Weekly Forecast </h5>
+          <h5> {props.forecast.city} Weekly Forecast </h5>
           <div className="row">
             {forecast.map((dailyForecast, index) => {
               if (index < 5) {
