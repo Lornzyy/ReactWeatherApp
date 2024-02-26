@@ -68,7 +68,7 @@ export default function Weather(props) {
         <WeatherInfo data={weatherData} />
         {/* <FormattedDate formatDate={weatherData.date} /> */}
 
-        <WeatherForecast forecast={weatherData.coordinates} />
+        <WeatherForecast forecast={weatherData} />
       </div>
     );
   } else {
